@@ -19,9 +19,15 @@
 
 # colorlogging
 
-Makes your log messages look like this:
+Makes logging colorful!
 
-![Example](./docs/example.png)
+<p align="center">
+  <img src="./docs/example.png" alt="Example of colorlogging output">
+</p>
+
+<p align="center">
+  <em>Example of colorlogging output</em>
+</p>
 
 ## Installation
 
@@ -37,7 +43,11 @@ To configure logging, call `configure_logging` like so:
 
 ```python
 import colorlogging
+import logging
+
+logger = logging.getLogger(__name__)
 
 def main() -> None:
     colorlogging.configure()
+    logger.info("Hello, world!")
 ```
