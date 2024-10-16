@@ -51,3 +51,19 @@ def main() -> None:
     colorlogging.configure()
     logger.info("Hello, world!")
 ```
+
+This tool also provides some other helpful display functions:
+
+```python
+import colorlogging
+
+colorlogging.show_info("This is a status message", important=True)
+colorlogging.show_warning("This is a warning message")
+colorlogging.show_error("This is an error message")
+```
+
+This shows the following output:
+
+<p align="center">
+  <img src="./docs/example2.png" alt="Another example of colorlogging output">
+</p>

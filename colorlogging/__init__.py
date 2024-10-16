@@ -1,6 +1,6 @@
 """Defines utility functions for enabling logging."""
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 __all__ = [
     "configure",
@@ -13,6 +13,7 @@ __all__ = [
     "snakecase_to_camelcase",
     "highlight_exception_message",
     "is_interactive_session",
+    "ColoredFormatter",
 ]
 
 import datetime
@@ -302,7 +303,9 @@ def configure(
     logger: logging.Logger | None = None,
     prefix: str | None = None,
     level: int = logging.INFO,
+    *,
     remove_existing_handlers: bool = True,
+    hide_if_not_interactive: bool = True,
 ) -> None:
     """Instantiates logging.
 
@@ -316,7 +319,12 @@ def configure(
         prefix: An optional prefix to add to the logger
         level: The logging level
         remove_existing_handlers: If set, all existing handlers will be removed.
+        hide_if_not_interactive: If set, the logger will not be configured if
+            the current session is not an interactive session.
     """
+    if hide_if_not_interactive and not is_interactive_session():
+        return
+
     if logger is None:
         logger = logging.getLogger()
 
