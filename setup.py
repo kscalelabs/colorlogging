@@ -9,8 +9,8 @@ from setuptools import setup
 with open("README.md", "r", encoding="utf-8") as f:
     long_description: str = f.read()
 
-requirements = []
-requirements_dev = ["black", "darglint", "ruff", "mypy", "pytest"]
+requirements: list[str] = []
+requirements_dev: list[str] = ["black", "darglint", "ruff", "mypy", "pytest"]
 
 with open("colorlogging/__init__.py", "r", encoding="utf-8") as fh:
     version_re = re.search(r"^__version__ = \"([^\"]*)\"", fh.read(), re.MULTILINE)
