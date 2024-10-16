@@ -302,6 +302,7 @@ def configure(
     logger: logging.Logger | None = None,
     prefix: str | None = None,
     level: int = logging.INFO,
+    remove_existing_handlers: bool = True,
 ) -> None:
     """Instantiates logging.
 
@@ -314,6 +315,7 @@ def configure(
             be used.
         prefix: An optional prefix to add to the logger
         level: The logging level
+        remove_existing_handlers: If set, all existing handlers will be removed.
     """
     if logger is None:
         logger = logging.getLogger()
@@ -326,8 +328,9 @@ def configure(
     logging.captureWarnings(True)
 
     # Clears all existing handlers.
-    for handler in logger.handlers[:]:
-        logger.removeHandler(handler)
+    if remove_existing_handlers:
+        for handler in logger.handlers[:]:
+            logger.removeHandler(handler)
 
     # Adds new handler.
     stream_handler = logging.StreamHandler(sys.stdout)
